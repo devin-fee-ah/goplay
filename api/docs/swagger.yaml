@@ -1,0 +1,11 @@
+basePath: /api/v1
+host: localhost:8080
+info:
+  contact:
+    email: devin.fee@earnin.cocm
+    name: Devin Fee
+  description: This is a simple app
+  title: Swagger Example API
+  version: "1.0"
+paths: {}
+swagger: "2.0"
