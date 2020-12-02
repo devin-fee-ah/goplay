@@ -1,24 +1,23 @@
 package dtos
 
-import (
-	"errors"
-)
-
-//  example
-var (
-	ErrNameInvalid = errors.New("name is empty")
-)
+import "fmt"
 
 // AddUser example
 type AddUser struct {
-	Name string `json:"name" example:"user name"`
+	Age  int    `json:"age" example:"33" binding:"required"`
+	Name string `json:"name" example:"Devin" binding:"required"`
 }
 
 // Validate example
-func (a AddUser) Validate() error {
+func (dto AddUser) Validate() error {
 	switch {
-	case len(a.Name) == 0:
-		return ErrNameInvalid
+	case len(dto.Name) == 0:
+		return ErrNameEmpty
+	case dto.Age <= 0:
+		fmt.Printf("******type is %T\n", dto.Age)
+		fmt.Printf("******value is %d\n", dto.Age)
+		return ErrAgeInvalid
+
 	default:
 		return nil
 	}

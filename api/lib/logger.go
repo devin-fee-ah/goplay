@@ -1,15 +1,22 @@
 package lib
 
 import (
+	"go.uber.org/fx"
 	"go.uber.org/zap"
 	"go.uber.org/zap/zapcore"
 )
 
+// ProvideLoggerParams for fx
+type ProvideLoggerParams struct {
+	fx.In
+	Env *Env
+}
+
 // ProvideLogger to fx
-func ProvideLogger(env *Env) *zap.SugaredLogger {
+func ProvideLogger(p ProvideLoggerParams) *zap.SugaredLogger {
 	config := zap.NewDevelopmentConfig()
 
-	if env.Environment == "development" {
+	if p.Env.Environment == "development" {
 		config.EncoderConfig.EncodeLevel = zapcore.CapitalColorLevelEncoder
 	}
 

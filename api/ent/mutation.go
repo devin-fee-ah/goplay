@@ -4,11 +4,10 @@ package ent
 
 import (
 	"context"
-	"fmt"
-	"sync"
-
 	"dfee/api/ent/predicate"
 	"dfee/api/ent/user"
+	"fmt"
+	"sync"
 
 	"github.com/facebook/ent"
 )

@@ -3,10 +3,10 @@
 package ent
 
 import (
+	"dfee/api/ent/user"
 	"fmt"
 	"strings"
 
-	"dfee/api/ent/user"
 	"github.com/facebook/ent/dialect/sql"
 )
 

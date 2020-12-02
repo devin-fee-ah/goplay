@@ -7,12 +7,20 @@ import (
 	ginzap "github.com/gin-contrib/zap"
 
 	"github.com/gin-gonic/gin"
+	"go.uber.org/fx"
 	"go.uber.org/zap"
 )
 
 // Routes modules for registration
 type Routes interface {
 	Register(gin *gin.Engine)
+}
+
+// RequestHandlerParams for fx
+type RequestHandlerParams struct {
+	fx.In
+	Env    *Env
+	Logger *zap.SugaredLogger
 }
 
 // RequestHandler struct
@@ -24,10 +32,10 @@ type RequestHandler struct {
 }
 
 // NewRequestHandler creates a new request handler
-func NewRequestHandler(env *Env, logger *zap.SugaredLogger) *RequestHandler {
+func NewRequestHandler(p RequestHandlerParams) *RequestHandler {
 	return &RequestHandler{
-		env:    env,
-		logger: logger,
+		env:    p.Env,
+		logger: p.Logger,
 		routes: []Routes{},
 	}
 }
@@ -56,7 +64,7 @@ func (rh *RequestHandler) Setup() *gin.Engine {
 
 // Run the request handler
 func (rh *RequestHandler) Run() {
-	rh.engine.Run(fmt.Sprintf(":%s", rh.env.Port))
+	rh.engine.Run(fmt.Sprintf(":%d", rh.env.Port))
 }
 
 // SetupAndRun the request handler

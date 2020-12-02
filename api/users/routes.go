@@ -2,8 +2,16 @@ package users
 
 import (
 	"github.com/gin-gonic/gin"
+	"go.uber.org/fx"
 	"go.uber.org/zap"
 )
+
+// RoutesParams for fx
+type RoutesParams struct {
+	fx.In
+	Logger         *zap.SugaredLogger
+	UserController *Controller
+}
 
 // Routes struct
 type Routes struct {
@@ -12,13 +20,10 @@ type Routes struct {
 }
 
 // NewRoutes creates new user routes
-func NewRoutes(
-	controller *Controller,
-	logger *zap.SugaredLogger,
-) *Routes {
+func NewRoutes(p RoutesParams) *Routes {
 	return &Routes{
-		logger:     logger,
-		controller: controller,
+		logger:     p.Logger,
+		controller: p.UserController,
 	}
 }
 
@@ -31,11 +36,11 @@ func (r *Routes) Register(e *gin.Engine) {
 		{
 			users := v1.Group("/users")
 			{
-				users.GET("/:id", r.controller.GetOneUser)
-				// v1.GET("/user", s.userController.GetUser)
-				// v1.POST("/user", s.userController.SaveUser)
-				// v1.POST("/user/:id", s.userController.UpdateUser)
-				// v1.DELETE("/user/:id", s.userController.DeleteUser)
+				users.GET("/", r.controller.GetAll)
+				users.POST("/", r.controller.Save)
+				users.GET("/:id", r.controller.GetOne)
+				users.POST("/:id", r.controller.Update)
+				users.DELETE("/:id", r.controller.Delete)
 			}
 		}
 	}

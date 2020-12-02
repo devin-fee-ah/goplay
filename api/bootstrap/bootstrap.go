@@ -3,8 +3,9 @@ package bootstrap
 import (
 	"context"
 
+	"dfee/api/docs"
+	"dfee/api/ent"
 	"dfee/api/lib"
-	"dfee/api/swagger"
 	"dfee/api/users"
 
 	"go.uber.org/fx"
@@ -13,8 +14,9 @@ import (
 
 // Module exported for initializing application
 var Module = fx.Options(
+	docs.Module,
+	ent.Module,
 	lib.Module,
-	swagger.Module,
 	users.Module,
 	fx.Invoke(bootstrap),
 )

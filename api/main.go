@@ -16,7 +16,7 @@ import (
 // @contact.name Devin Fee
 // @contact.email devin.fee@earnin.cocm
 // @host localhost:8080
-// @BasePath /api/v1
+// @BasePath /api
 func main() {
 	godotenv.Load()
 	fx.New(bootstrap.Module).Run()

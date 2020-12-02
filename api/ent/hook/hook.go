@@ -4,9 +4,8 @@ package hook
 
 import (
 	"context"
-	"fmt"
-
 	"dfee/api/ent"
+	"fmt"
 )
 
 // The UserFunc type is an adapter to allow the use of ordinary

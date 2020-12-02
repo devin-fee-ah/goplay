@@ -1,15 +1,16 @@
 package dtos
 
-// UpdateUser example
+// UpdateUser dto
 type UpdateUser struct {
-	Name string `json:"name" example:"user name"`
+	Age  int    `json:"age" example:"33"`
+	Name string `json:"name" example:"Devin"`
 }
 
-// Validate example
-func (a UpdateUser) Validate() error {
+// Validate the dto
+func (dto UpdateUser) Validate() error {
 	switch {
-	case len(a.Name) == 0:
-		return ErrNameInvalid
+	case dto.Age < 0:
+		return ErrAgeInvalid
 	default:
 		return nil
 	}

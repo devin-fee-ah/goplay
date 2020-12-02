@@ -1,20 +1,39 @@
-basePath: /api/v1
+basePath: /api
 definitions:
-  dtos.User:
+  dtos.AddUser:
     properties:
-      id:
-        example: 1
-        format: int64
+      age:
+        example: 33
         type: integer
       name:
-        example: user name
+        example: Devin
         type: string
-      uuid:
-        example: 25
-        format: int64
-        type: integer
+    required:
+    - age
+    - name
     type: object
-  httputil.HTTPError:
+  dtos.UpdateUser:
+    properties:
+      age:
+        example: 33
+        type: integer
+      name:
+        example: Devin
+        type: string
+    type: object
+  ent.User:
+    properties:
+      age:
+        description: Age holds the value of the "age" field.
+        type: integer
+      id:
+        description: ID of the ent.
+        type: integer
+      name:
+        description: Name holds the value of the "name" field.
+        type: string
+    type: object
+  lib.HTTPError:
     properties:
       code:
         example: 400
@@ -32,11 +51,102 @@ info:
   title: Swagger Example API
   version: "1.0"
 paths:
-  /users/{id}:
+  /v1/users:
+    post:
+      consumes:
+      - application/json
+      parameters:
+      - description: Add user
+        in: body
+        name: user
+        required: true
+        schema:
+          $ref: '#/definitions/dtos.AddUser'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/ent.User'
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/lib.HTTPError'
+        "404":
+          description: Not Found
+          schema:
+            $ref: '#/definitions/lib.HTTPError'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/lib.HTTPError'
+      summary: Saves a new user
+      tags:
+      - users
+  /v1/users/:
     get:
       consumes:
       - application/json
-      description: get string by ID
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            items:
+              $ref: '#/definitions/ent.User'
+            type: array
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/lib.HTTPError'
+        "404":
+          description: Not Found
+          schema:
+            $ref: '#/definitions/lib.HTTPError'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/lib.HTTPError'
+      summary: Get all users
+      tags:
+      - users
+  /v1/users/{id}:
+    delete:
+      consumes:
+      - application/json
+      parameters:
+      - description: User ID
+        in: path
+        name: id
+        required: true
+        type: integer
+      produces:
+      - application/json
+      responses:
+        "204":
+          description: No Content
+          schema:
+            $ref: '#/definitions/ent.User'
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/lib.HTTPError'
+        "404":
+          description: Not Found
+          schema:
+            $ref: '#/definitions/lib.HTTPError'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/lib.HTTPError'
+      summary: Delete a user
+      tags:
+      - users
+    get:
+      consumes:
+      - application/json
       parameters:
       - description: User ID
         in: path
@@ -49,20 +159,57 @@ paths:
         "200":
           description: OK
           schema:
-            $ref: '#/definitions/dtos.User'
+            $ref: '#/definitions/ent.User'
         "400":
           description: Bad Request
           schema:
-            $ref: '#/definitions/httputil.HTTPError'
+            $ref: '#/definitions/lib.HTTPError'
         "404":
           description: Not Found
           schema:
-            $ref: '#/definitions/httputil.HTTPError'
+            $ref: '#/definitions/lib.HTTPError'
         "500":
           description: Internal Server Error
           schema:
-            $ref: '#/definitions/httputil.HTTPError'
+            $ref: '#/definitions/lib.HTTPError'
       summary: Get a user
+      tags:
+      - users
+    post:
+      consumes:
+      - application/json
+      parameters:
+      - description: User ID
+        in: path
+        name: id
+        required: true
+        type: integer
+      - description: Update user
+        in: body
+        name: user
+        required: true
+        schema:
+          $ref: '#/definitions/dtos.UpdateUser'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/ent.User'
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/lib.HTTPError'
+        "404":
+          description: Not Found
+          schema:
+            $ref: '#/definitions/lib.HTTPError'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/lib.HTTPError'
+      summary: Update a user
       tags:
       - users
 swagger: "2.0"

@@ -4,7 +4,6 @@ package enttest
 
 import (
 	"context"
-
 	"dfee/api/ent"
 	// required by schema hooks.
 	_ "dfee/api/ent/runtime"

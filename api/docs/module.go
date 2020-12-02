@@ -1,4 +1,4 @@
-package swagger
+package docs
 
 import (
 	"dfee/api/lib"

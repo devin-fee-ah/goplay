@@ -4,6 +4,7 @@ package user
 
 import (
 	"dfee/api/ent/predicate"
+
 	"github.com/facebook/ent/dialect/sql"
 )
 
