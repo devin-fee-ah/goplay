@@ -3,6 +3,7 @@ package bootstrap
 import (
 	"context"
 
+	"dfee/api/aws"
 	"dfee/api/docs"
 	"dfee/api/ent"
 	"dfee/api/lib"
@@ -14,6 +15,7 @@ import (
 
 // Module exported for initializing application
 var Module = fx.Options(
+	aws.Module,
 	docs.Module,
 	ent.Module,
 	lib.Module,
