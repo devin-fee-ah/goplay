@@ -14,10 +14,13 @@ type ProvideLoggerParams struct {
 
 // ProvideLogger to fx
 func ProvideLogger(p ProvideLoggerParams) *zap.SugaredLogger {
-	config := zap.NewDevelopmentConfig()
+	var config zap.Config
 
 	if p.Env.Environment == "development" {
+		config = zap.NewDevelopmentConfig()
 		config.EncoderConfig.EncodeLevel = zapcore.CapitalColorLevelEncoder
+	} else {
+		config = zap.NewProductionConfig()
 	}
 
 	logger, _ := config.Build()
