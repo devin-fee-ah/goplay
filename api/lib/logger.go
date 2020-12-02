@@ -5,14 +5,8 @@ import (
 	"go.uber.org/zap/zapcore"
 )
 
-// Logger structure
-type Logger struct {
-	Zap *zap.SugaredLogger
-}
-
-// NewLogger sets up logger
-func NewLogger(env Env) Logger {
-
+// ProvideLogger to fx
+func ProvideLogger(env *Env) *zap.SugaredLogger {
 	config := zap.NewDevelopmentConfig()
 
 	if env.Environment == "development" {
@@ -21,10 +15,5 @@ func NewLogger(env Env) Logger {
 
 	logger, _ := config.Build()
 
-	sugar := logger.Sugar()
-
-	return Logger{
-		Zap: sugar,
-	}
-
+	return logger.Sugar()
 }

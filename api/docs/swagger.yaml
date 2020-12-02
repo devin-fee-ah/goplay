@@ -1,4 +1,28 @@
 basePath: /api/v1
+definitions:
+  dtos.User:
+    properties:
+      id:
+        example: 1
+        format: int64
+        type: integer
+      name:
+        example: user name
+        type: string
+      uuid:
+        example: 25
+        format: int64
+        type: integer
+    type: object
+  httputil.HTTPError:
+    properties:
+      code:
+        example: 400
+        type: integer
+      message:
+        example: status bad request
+        type: string
+    type: object
 host: localhost:8080
 info:
   contact:
@@ -7,5 +31,38 @@ info:
   description: This is a simple app
   title: Swagger Example API
   version: "1.0"
-paths: {}
+paths:
+  /users/{id}:
+    get:
+      consumes:
+      - application/json
+      description: get string by ID
+      parameters:
+      - description: User ID
+        in: path
+        name: id
+        required: true
+        type: integer
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/dtos.User'
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/httputil.HTTPError'
+        "404":
+          description: Not Found
+          schema:
+            $ref: '#/definitions/httputil.HTTPError'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/httputil.HTTPError'
+      summary: Get a user
+      tags:
+      - users
 swagger: "2.0"

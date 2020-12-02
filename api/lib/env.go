@@ -14,10 +14,10 @@ type Env struct {
 }
 
 // NewEnv creates a new environment
-func NewEnv() Env {
+func NewEnv() *Env {
 	env := Env{}
 	env.LoadEnv()
-	return env
+	return &env
 }
 
 // LoadEnv loads environment
