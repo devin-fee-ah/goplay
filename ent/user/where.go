@@ -3,8 +3,7 @@
 package user
 
 import (
-	"dfee/api/ent/predicate"
-
+	"github.com/devin-fee-ah/goplay/ent/predicate"
 	"github.com/facebook/ent/dialect/sql"
 )
 

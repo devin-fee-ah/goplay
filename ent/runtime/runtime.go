@@ -2,7 +2,7 @@
 
 package runtime
 
-// The schema-stitching logic is generated in dfee/api/ent/runtime.go
+// The schema-stitching logic is generated in github.com/devin-fee-ah/goplay/ent/runtime.go
 
 const (
 	Version = "v0.5.1"                                          // Version of ent codegen.

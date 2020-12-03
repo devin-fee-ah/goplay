@@ -3,10 +3,10 @@
 package ent
 
 import (
-	"dfee/api/ent/user"
 	"fmt"
 	"strings"
 
+	"github.com/devin-fee-ah/goplay/ent/user"
 	"github.com/facebook/ent/dialect/sql"
 )
 

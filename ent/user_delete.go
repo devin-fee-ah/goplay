@@ -4,10 +4,10 @@ package ent
 
 import (
 	"context"
-	"dfee/api/ent/predicate"
-	"dfee/api/ent/user"
 	"fmt"
 
+	"github.com/devin-fee-ah/goplay/ent/predicate"
+	"github.com/devin-fee-ah/goplay/ent/user"
 	"github.com/facebook/ent/dialect/sql"
 	"github.com/facebook/ent/dialect/sql/sqlgraph"
 	"github.com/facebook/ent/schema/field"

@@ -2,7 +2,8 @@ package ent
 
 import (
 	"context"
-	cfg "dfee/api/config"
+
+	cfg "github.com/devin-fee-ah/goplay/config"
 
 	"go.uber.org/fx"
 	"go.uber.org/zap"

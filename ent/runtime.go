@@ -3,8 +3,8 @@
 package ent
 
 import (
-	"dfee/api/ent/schema"
-	"dfee/api/ent/user"
+	"github.com/devin-fee-ah/goplay/ent/schema"
+	"github.com/devin-fee-ah/goplay/ent/user"
 )
 
 // The init function reads all schema descriptors with runtime code

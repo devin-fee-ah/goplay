@@ -7,9 +7,9 @@ import (
 	"fmt"
 	"log"
 
-	"dfee/api/ent/migrate"
+	"github.com/devin-fee-ah/goplay/ent/migrate"
 
-	"dfee/api/ent/user"
+	"github.com/devin-fee-ah/goplay/ent/user"
 
 	"github.com/facebook/ent/dialect"
 	"github.com/facebook/ent/dialect/sql"

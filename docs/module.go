@@ -1,7 +1,7 @@
 package docs
 
 import (
-	"dfee/api/lib"
+	"github.com/devin-fee-ah/goplay/lib"
 
 	"go.uber.org/fx"
 )

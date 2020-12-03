@@ -3,13 +3,13 @@ package bootstrap
 import (
 	"context"
 
-	"dfee/api/awsutils"
-	"dfee/api/config"
-	"dfee/api/docs"
-	"dfee/api/ent"
-	"dfee/api/lib"
-	"dfee/api/secrets"
-	"dfee/api/users"
+	"github.com/devin-fee-ah/goplay/awsutils"
+	"github.com/devin-fee-ah/goplay/config"
+	"github.com/devin-fee-ah/goplay/docs"
+	"github.com/devin-fee-ah/goplay/ent"
+	"github.com/devin-fee-ah/goplay/lib"
+	"github.com/devin-fee-ah/goplay/secrets"
+	"github.com/devin-fee-ah/goplay/users"
 
 	"go.uber.org/fx"
 	"go.uber.org/zap"

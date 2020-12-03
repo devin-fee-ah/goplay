@@ -1,10 +1,11 @@
 package users
 
 import (
-	"dfee/api/lib"
-	"dfee/api/users/dtos"
 	"net/http"
 	"strconv"
+
+	"github.com/devin-fee-ah/goplay/lib"
+	"github.com/devin-fee-ah/goplay/users/dtos"
 
 	"github.com/gin-gonic/gin"
 	"go.uber.org/fx"

@@ -2,8 +2,9 @@ package users
 
 import (
 	"context"
-	"dfee/api/ent"
-	"dfee/api/users/dtos"
+
+	"github.com/devin-fee-ah/goplay/ent"
+	"github.com/devin-fee-ah/goplay/users/dtos"
 
 	"go.uber.org/fx"
 	"go.uber.org/zap"

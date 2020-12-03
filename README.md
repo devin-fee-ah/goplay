@@ -1,4 +1,4 @@
-# api
+# goplay
 
 Proof of concept demonstrating:
 - aws (`aws-sdk`)

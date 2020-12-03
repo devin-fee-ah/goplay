@@ -1,4 +1,4 @@
-module dfee/api
+module github.com/devin-fee-ah/goplay
 
 go 1.15
 

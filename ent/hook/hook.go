@@ -4,8 +4,9 @@ package hook
 
 import (
 	"context"
-	"dfee/api/ent"
 	"fmt"
+
+	"github.com/devin-fee-ah/goplay/ent"
 )
 
 // The UserFunc type is an adapter to allow the use of ordinary

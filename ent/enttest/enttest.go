@@ -4,9 +4,10 @@ package enttest
 
 import (
 	"context"
-	"dfee/api/ent"
+
+	"github.com/devin-fee-ah/goplay/ent"
 	// required by schema hooks.
-	_ "dfee/api/ent/runtime"
+	_ "github.com/devin-fee-ah/goplay/ent/runtime"
 
 	"github.com/facebook/ent/dialect/sql/schema"
 )

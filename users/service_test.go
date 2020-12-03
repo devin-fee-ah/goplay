@@ -2,11 +2,12 @@ package users
 
 import (
 	"context"
-	"dfee/api/ent"
-	"dfee/api/ent/enttest"
-	"dfee/api/users/dtos"
 	"fmt"
 	"testing"
+
+	"github.com/devin-fee-ah/goplay/ent"
+	"github.com/devin-fee-ah/goplay/ent/enttest"
+	"github.com/devin-fee-ah/goplay/users/dtos"
 
 	"github.com/google/go-cmp/cmp"
 	_ "github.com/mattn/go-sqlite3"

@@ -1,8 +1,8 @@
 package secrets
 
 import (
-	"dfee/api/awsutils"
-	"dfee/api/lib"
+	"github.com/devin-fee-ah/goplay/awsutils"
+	"github.com/devin-fee-ah/goplay/lib"
 
 	"go.uber.org/fx"
 	"go.uber.org/zap"

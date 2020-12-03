@@ -27,7 +27,7 @@ generate: ent/ent.go docs/docs.go
 # generate entity files
 ent/ent.go: $(shell find ent/schema -type f)
 	@echo "Generating: ent"
-	@go generate
+	@go generate ./ent
 
 # generate swagger docs files
 docs/docs.go: main.go $(shell find . -type f | grep controller.go)

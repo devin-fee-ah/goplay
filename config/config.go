@@ -1,8 +1,8 @@
 package config
 
 import (
-	"dfee/api/lib"
-	"dfee/api/secrets"
+	"github.com/devin-fee-ah/goplay/lib"
+	"github.com/devin-fee-ah/goplay/secrets"
 
 	"go.uber.org/fx"
 )
