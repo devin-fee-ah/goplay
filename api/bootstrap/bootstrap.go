@@ -3,10 +3,12 @@ package bootstrap
 import (
 	"context"
 
-	"dfee/api/aws"
+	"dfee/api/awsutils"
+	"dfee/api/config"
 	"dfee/api/docs"
 	"dfee/api/ent"
 	"dfee/api/lib"
+	"dfee/api/secrets"
 	"dfee/api/users"
 
 	"go.uber.org/fx"
@@ -15,10 +17,12 @@ import (
 
 // Module exported for initializing application
 var Module = fx.Options(
-	aws.Module,
+	awsutils.Module,
+	config.Module,
 	docs.Module,
 	ent.Module,
 	lib.Module,
+	secrets.Module,
 	users.Module,
 	fx.Invoke(bootstrap),
 )
@@ -32,10 +36,6 @@ func bootstrap(
 		OnStart: func(context.Context) error {
 			go func() {
 				logger.Info("Starting Application")
-				// migrations.Migrate()
-				// middlewares.Setup()
-				// userRoutes.Setup()
-				// registrations.Setup()
 				handler.SetupAndRun()
 			}()
 			return nil

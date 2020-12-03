@@ -1,8 +1,4 @@
-package aws
-
-// Use this code snippet in your app.
-// If you need more information about configurations or implementing the sample code, visit the AWS docs:
-// https://docs.aws.amazon.com/sdk-for-go/v1/developer-guide/setting-up.html
+package awsutils
 
 import (
 	"encoding/base64"
@@ -15,39 +11,26 @@ import (
 	"go.uber.org/fx"
 )
 
-// Toolbelt wrapper for fx
-type Toolbelt struct {
-	secretsManager *secretsmanager.SecretsManager
-	session        *session.Session
-}
-
-// ToolbeltParams for fx
-type ToolbeltParams struct {
+// ProvideSecretsManagerParams for fx
+type ProvideSecretsManagerParams struct {
 	fx.In
-	SecretsManager *secretsmanager.SecretsManager
-	Session        *session.Session
+	Session *session.Session
 }
 
-// NewToolbelt builder
-func NewToolbelt(p ToolbeltParams) *Toolbelt {
-	return &Toolbelt{
-		secretsManager: p.SecretsManager,
-		session:        p.Session,
-	}
+// ProvideSecretsManager for fx
+func ProvideSecretsManager(
+	p ProvideSecretsManagerParams,
+) *secretsmanager.SecretsManager {
+	sm := secretsmanager.New(p.Session)
+	return sm
 }
 
 // GetSecret from Aws
 func (tb *Toolbelt) GetSecret(secretName string) (string, error) {
-	// secretName := "goplay"
-	// region := "us-west-2"
-
-	// //Create a secrets manager client
-	// svc := secretsmanager.new(session.new(),
-	//     aws.jewConfig().WithRegion(region))
-
 	input := &secretsmanager.GetSecretValueInput{
-		SecretId:     aws.String(secretName),
-		VersionStage: aws.String("AWSCURRENT"), // VersionStage defaults to AWSCURRENT if unspecified
+		SecretId: aws.String(secretName),
+		// VersionStage defaults to AWSCURRENT if unspecified
+		// VersionStage: aws.String("AWSCURRENT"),
 	}
 
 	// In this sample we only handle the specific exceptions for the 'GetSecretValue' API.

@@ -20,9 +20,10 @@ type EnvParams struct {
 
 // Env has environment stored
 type Env struct {
-	DatabaseURL string
-	Environment string
-	Port        uint
+	GoPlaySecretName string
+	DatabaseURL      string
+	Environment      string
+	Port             uint
 }
 
 // NewEnv creates a new environment
@@ -37,11 +38,16 @@ func (env *Env) Load() (err error) {
 	databaseURL := os.Getenv("DATABASE_URL")
 	environment := os.Getenv("ENVIRONMENT")
 	port := os.Getenv("PORT")
+	goPlaySecretName := os.Getenv("GOPLAY_SECRET_NAME")
 
-	if len(databaseURL) == 0 {
-		return errors.New("DATABASE_URL must be provided")
+	if len(databaseURL) == 0 && len(goPlaySecretName) == 0 {
+		return errors.New("Must provide either DATABASE_URL or GOPLAY_SECRET_NAME")
 	}
-	env.DatabaseURL = databaseURL
+	if len(databaseURL) != 0 {
+		env.DatabaseURL = databaseURL
+	} else {
+		env.GoPlaySecretName = goPlaySecretName
+	}
 
 	if !utils.StringInSlice(environment, environmentOptions) {
 		return fmt.Errorf(

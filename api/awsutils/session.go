@@ -1,4 +1,4 @@
-package aws
+package awsutils
 
 import (
 	"github.com/aws/aws-sdk-go/aws/session"
@@ -13,6 +13,6 @@ type ProvideSessionParams struct {
 // ProvideSession for fx
 func ProvideSession(p ProvideSessionParams) (*session.Session, error) {
 	return session.NewSessionWithOptions(session.Options{
-		// SharedConfigState: session.SharedConfigEnable,
+		SharedConfigState: session.SharedConfigEnable,
 	})
 }
