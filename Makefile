@@ -33,8 +33,14 @@ ent/ent.go: $(shell find ent/schema -type f)
 docs/docs.go: main.go $(shell find . -type f | grep controller.go)
 	@export PATH=$(shell go env GOPATH)/bin:$$PATH; swag i
 
+## test: runs tests recursively
+.PHONY: test
+test:
+	@echo "Running tests"
+	@go test -v ./...
+
 ## dev: runs without building
-.PHONY: generate run
+.PHONY: run
 run:
 	@echo "Running (dev)"
 	@go run ${ENTRYPOINT}
