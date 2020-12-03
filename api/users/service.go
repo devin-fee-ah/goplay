@@ -9,21 +9,21 @@ import (
 	"go.uber.org/zap"
 )
 
-// ServiceParams for fx
-type ServiceParams struct {
-	fx.In
-	Ent    *ent.Client
-	Logger *zap.SugaredLogger
-}
-
 // Service for users
 type Service struct {
 	ent    *ent.Client
 	logger *zap.SugaredLogger
 }
 
+// NewServiceParams for fx
+type NewServiceParams struct {
+	fx.In
+	Ent    *ent.Client
+	Logger *zap.SugaredLogger
+}
+
 // NewService creates a new userservice
-func NewService(p ServiceParams) *Service {
+func NewService(p NewServiceParams) *Service {
 	return &Service{
 		ent:    p.Ent,
 		logger: p.Logger,
@@ -54,7 +54,7 @@ func (s *Service) Create(
 ) (user *ent.User, err error) {
 	err = dto.Validate()
 	if err == nil {
-		user, err = s.ent.User.Create().SetName(dto.Name).SetAge(21).Save(ctx)
+		user, err = s.ent.User.Create().SetName(dto.Name).SetAge(dto.Age).Save(ctx)
 	}
 	return
 }
@@ -87,4 +87,18 @@ func (s *Service) Delete(
 ) (err error) {
 	err = s.ent.User.DeleteOneID(id).Exec(ctx)
 	return
+}
+
+// AreEqual determines if two users are equal
+func AreEqual(left *ent.User, right *ent.User) bool {
+	switch {
+	case left.ID != right.ID:
+		return false
+	case left.Age != right.Age:
+		return false
+	case left.Name != right.Name:
+		return false
+	default:
+		return true
+	}
 }

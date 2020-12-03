@@ -9,11 +9,13 @@ import (
 	"github.com/aws/aws-sdk-go/aws/session"
 	"github.com/aws/aws-sdk-go/service/secretsmanager"
 	"go.uber.org/fx"
+	"go.uber.org/zap"
 )
 
 // ProvideSecretsManagerParams for fx
 type ProvideSecretsManagerParams struct {
 	fx.In
+	Logger  *zap.SugaredLogger
 	Session *session.Session
 }
 

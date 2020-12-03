@@ -9,6 +9,7 @@ require (
 	github.com/gin-contrib/zap v0.0.1
 	github.com/gin-gonic/gin v1.6.3
 	github.com/go-openapi/spec v0.19.15 // indirect
+	github.com/google/go-cmp v0.3.0
 	github.com/joho/godotenv v1.3.0
 	github.com/mattn/go-sqlite3 v1.14.5
 	github.com/swaggo/files v0.0.0-20190704085106-630677cd5c14

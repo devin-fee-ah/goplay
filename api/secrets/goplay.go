@@ -14,6 +14,7 @@ func (s *Secrets) GetGoPlay() (secret *GoPlay, err error) {
 	secret = s.goPlay
 	if s.goPlay == nil {
 		var value string
+		secret = &GoPlay{}
 
 		value, err = s.awsToolbelt.GetSecret(s.env.GoPlaySecretName)
 		if err != nil {

@@ -41,7 +41,7 @@ run:
 
 ## docker-build: builds and runs the docker image
 .PHONY: docker
-docker: docker-build
+docker: 
 	@echo "Running the docker image"
 	@docker run \
 		--rm \
