@@ -10,6 +10,7 @@ import (
 	"github.com/devin-fee-ah/goplay/lib"
 	"github.com/devin-fee-ah/goplay/secrets"
 	"github.com/devin-fee-ah/goplay/users"
+	"github.com/devin-fee-ah/goplay/web"
 
 	"go.uber.org/fx"
 	"go.uber.org/zap"
@@ -24,11 +25,12 @@ var Module = fx.Options(
 	lib.Module,
 	secrets.Module,
 	users.Module,
+	web.Module,
 	fx.Invoke(bootstrap),
 )
 
 func bootstrap(
-	handler *lib.RequestHandler,
+	handler *web.Handler,
 	lifecycle fx.Lifecycle,
 	logger *zap.SugaredLogger,
 ) {

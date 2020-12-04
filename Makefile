@@ -8,6 +8,12 @@ help:
 	@echo "Usage:"
 	@sed -n 's/^##//p' ${MAKEFILE_LIST} | column -t -s ':' |  sed -e 's/^/ /'
 
+## install: prepares the module
+.PHONY: install
+install:
+	@echo "Installing"
+	@go mod download -x
+
 ## clean: cleans the binary
 .PHONY: clean
 clean:
